@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit Filara — Infraestrutura Base para Agentes de IA</title>
+    <meta name="description" content="Instale e utilize agentes de IA no WhatsApp e Instagram com uma base profissional.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            light: '#1e293b',
+                            accent: '#3b82f6',
+                            accentHover: '#2563eb',
+                            text: '#f8fafc',
+                            muted: '#94a3b8',
+                            success: '#10b981'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos e Efeitos */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .hero-glow {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .vsl-container {
+            position: relative;
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+        }
+        /* Ocultar controles de vídeo */
+        video::-webkit-media-controls { display:none !important; }
+        video::-webkit-media-controls-enclosure { display:none !important; }
+        
+        .locked-btn {
+            filter: grayscale(100%);
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        
+        /* Botão WhatsApp Discreto (Landing Page) */
+        .wpp-discrete {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 9999;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50px;
+            padding: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            overflow: hidden;
+            width: 50px;
+        }
+        .wpp-discrete:hover {
+            width: 160px;
+            background: #20bd5a;
+        }
+        .wpp-text {
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s 0.1s;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .wpp-discrete:hover .wpp-text {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-brand-text antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="font-bold text-xl tracking-tight text-white">
+                FILARA<span class="text-brand-accent">.</span>
+            </div>
+            <!-- Link direto para quem já é aluno ou quer pular -->
+            <a href="vendas.html" class="hidden md:inline-flex items-center gap-2 text-sm text-brand-muted hover:text-white transition-colors">
+                Já conhece? Ir para Oferta
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (VSL) -->
+    <section class="relative pt-28 pb-16 px-6 overflow-hidden min-h-screen flex flex-col items-center">
+        <div class="absolute inset-0 hero-glow z-0 pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10 w-full">
+            
+            <div class="mb-8 fade-in-up">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 text-brand-accent text-xs font-medium mb-4 border border-brand-accent/20">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Infraestrutura Base para Agentes de IA
+                </div>
+                <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+                    Kit Filara
+                </h1>
+                <p class="text-lg md:text-xl text-brand-muted font-light max-w-2xl mx-auto">
+                    Instale e utilize agentes de IA no WhatsApp e Instagram com uma base <span class="text-white font-medium">profissional e organizada</span>.
+                </p>
+                <p class="mt-4 text-sm font-semibold text-brand-accent animate-pulse">
+                    ⚠️ Assista ao vídeo completo para liberar o próximo passo.
+                </p>
+            </div>
+
+            <!-- VSL PLAYER -->
+            <div class="vsl-container w-full aspect-video bg-black rounded-xl overflow-hidden border border-white/10 relative group mb-8 fade-in-up shadow-2xl">
+                <!-- Vídeo de exemplo. Substitua pelo link real -->
+                <video id="vsl-player" class="w-full h-full object-cover" playsinline webkit-playsinline poster="https://placehold.co/1920x1080/0f172a/FFF?text=Video+Carregando...">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos.
+                </video>
+
+                <div id="play-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 cursor-pointer z-20 hover:bg-black/50 transition-all backdrop-blur-sm">
+                    <div class="w-20 h-20 bg-brand-accent rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.5)] transform transition-transform group-hover:scale-110">
+                        <i class="ph-fill ph-play text-white text-4xl ml-1"></i>
+                    </div>
+                    <p class="mt-4 text-white font-semibold tracking-wide uppercase text-sm">Clique para ativar o som</p>
+                </div>
+
+                <div id="interaction-blocker" class="absolute inset-0 z-10 hidden" oncontextmenu="return false;"></div>
+            </div>
+
+            <!-- CTA (TIME GATED) -->
+            <div class="flex flex-col items-center justify-center min-h-[100px] fade-in-up">
+                <div id="countdown-container" class="flex flex-col items-center gap-2 mb-4 transition-opacity duration-500">
+                    <div class="flex items-center gap-2 text-brand-muted text-sm">
+                        <i class="ph ph-lock-key animate-pulse"></i>
+                        <span id="countdown-text">Liberando acesso em <span id="timer-display" class="font-mono text-white">Carregando...</span></span>
+                    </div>
+                    <div class="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
+                        <div id="progress-bar-mock" class="h-full bg-brand-accent w-0 transition-all duration-1000 ease-linear"></div>
+                    </div>
+                </div>
+
+                <!-- LINK PARA VENDAS.HTML -->
+                <a href="vendas.html" id="cta-button" class="locked-btn group relative inline-flex items-center gap-3 bg-brand-success hover:bg-green-600 text-white text-lg px-8 py-4 rounded-lg font-bold transition-all shadow-lg shadow-green-900/20 transform hover:-translate-y-1 overflow-hidden">
+                    <span class="relative z-10 flex items-center gap-2">
+                        <span id="cta-text">Assista ao vídeo para continuar</span>
+                        <i id="cta-icon" class="ph-bold ph-lock-key"></i>
+                    </span>
+                    <div class="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine" />
+                </a>
+
+                <p class="mt-4 text-xs text-brand-muted max-w-lg">
+                    Esse vídeo explica exatamente como a infraestrutura do Kit Filara funciona e o que você recebe.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-black py-10 px-6 border-t border-white/10 text-sm mt-20">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-left">
+                <div class="font-bold text-xl text-white mb-2">FILARA<span class="text-brand-accent">.</span></div>
+                <p class="text-brand-muted text-xs">Ecossistemas inteligentes com IA</p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 text-gray-400 text-center md:text-left">
+                <div>
+                    <span class="block text-brand-accent font-semibold mb-1">Dúvidas e suporte</span>
+                    <a href="mailto:sistema.filara@gmail.com" class="hover:text-white transition-colors">sistema.filara@gmail.com</a>
+                </div>
+                <div>
+                    <span class="block text-brand-accent font-semibold mb-1">WhatsApp</span>
+                    <a href="https://wa.me/554891003520" target="_blank" class="hover:text-white transition-colors">(48) 9100-3520</a>
+                </div>
+            </div>
+            <div class="text-gray-500 text-xs text-right">© Filara — Todos os direitos reservados</div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/554891003520?text=Quero%20o%20Kit%20Filara.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener" class="wpp-discrete">
+        <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+        <span class="wpp-text">Falar com a Filara</span>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+        });
+
+        const video = document.getElementById('vsl-player');
+        const playOverlay = document.getElementById('play-overlay');
+        const blocker = document.getElementById('interaction-blocker');
+        const ctaButton = document.getElementById('cta-button');
+        const ctaText = document.getElementById('cta-text');
+        const ctaIcon = document.getElementById('cta-icon');
+        const countdownContainer = document.getElementById('countdown-container');
+        const timerDisplay = document.getElementById('timer-display');
+        const progressBarMock = document.getElementById('progress-bar-mock');
+        let tracking = { started: false, completed: false, unlocked: false };
+
+        function formatTime(seconds) {
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        playOverlay.addEventListener('click', () => {
+            video.muted = false;
+            video.play().then(() => {
+                playOverlay.style.display = 'none';
+                blocker.style.display = 'block';
+                if (!tracking.started) tracking.started = true;
+            });
+        });
+
+        video.addEventListener('timeupdate', () => {
+            const remaining = video.duration - video.currentTime;
+            if (!tracking.unlocked) {
+                timerDisplay.innerText = formatTime(remaining || 0);
+                progressBarMock.style.width = `${(video.currentTime / video.duration) * 100}%`;
+            }
+            if ((remaining <= 0.5 || video.ended) && !tracking.unlocked) {
+                unlockCTA();
+            }
+        });
+
+        video.addEventListener('ended', () => {
+            tracking.completed = true;
+            unlockCTA();
+        });
+
+        function unlockCTA() {
+            if (tracking.unlocked) return;
+            ctaButton.classList.remove('locked-btn');
+            ctaText.innerText = "👉 Ver todos os detalhes do Kit Filara";
+            ctaIcon.classList.remove('ph-lock-key');
+            ctaIcon.classList.add('ph-arrow-right');
+            countdownContainer.style.opacity = '0';
+            setTimeout(() => { countdownContainer.style.display = 'none'; }, 500);
+            tracking.unlocked = true;
+            ctaButton.classList.add('animate-pulse');
+        }
+
+        ctaButton.addEventListener('click', (e) => {
+            if (!tracking.unlocked) e.preventDefault();
+        });
+        video.addEventListener('contextmenu', (e) => e.preventDefault());
+    </script>
+</body>
+</html>
